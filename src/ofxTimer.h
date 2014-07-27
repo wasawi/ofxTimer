@@ -43,8 +43,8 @@ private:
 	
 public:
 	
-	int			count;
-	ofEvent <ofEventArgs> TIMER_REACHED;
+	unsigned int	count;
+	ofEvent <unsigned int> TIMER_REACHED;
 	
 	ofxTimer();
 	~ofxTimer();

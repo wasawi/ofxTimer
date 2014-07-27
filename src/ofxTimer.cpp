@@ -24,7 +24,7 @@ ofxTimer::ofxTimer() {
 
 ofxTimer::~ofxTimer() {
 	ofRemoveListener(ofEvents().update, this, &ofxTimer::update);
-	printf("*** Timer Destroyed ***\n");
+	ofLogVerbose("Timer Destroyed\n");
 }
 
 // ---------------------------------------
@@ -81,7 +81,7 @@ void ofxTimer::loop(bool b) {
 
 // ---------------------------------------
 void ofxTimer::update(ofEventArgs &e) {
-
+	
 	if (paused)
 		return;
 
@@ -108,8 +108,9 @@ void ofxTimer::update(ofEventArgs &e) {
 			resumed = false;
 
 			bStartTimer = true;
-			static ofEventArgs timerEventArgs;
-			ofNotifyEvent(TIMER_REACHED, timerEventArgs, this);
+			ofNotifyEvent(TIMER_REACHED, count, this);
+			
+			ofLogNotice() << "TIMER_REACHED";
 		}
 	}
 }
